@@ -9,12 +9,12 @@
 | image  |Y |image file in bytes or base64 string |
 
 ### Usage
-**
+```
 Post method.
 /emotion
-**
+```
 ### Examples
-**
+```
 image_type = file:
 form data = {
     image_type = "file",
@@ -27,9 +27,9 @@ form data = {
     image = your_base64_string
 }
 
-**
+```
 ### Sample Response
-**
+```
 {
     "anger": false,
     "disgust": false,
@@ -39,4 +39,4 @@ form data = {
     "sad": false,
     "surprise": false
 }
-**
+```
