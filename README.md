@@ -18,7 +18,7 @@ Route:  /emotion
 Content-disposition: form-data
 ```
 ### Examples
-####image_type = file:
+#### image_type = file:
 form data = {
     image_type = "file",
     image = file
@@ -64,7 +64,7 @@ axios(config)
 
 ```
 
-####image_type = base64:
+#### image_type = base64:
 form data = {
     image_type = "base64",
     image = your_base64_string
