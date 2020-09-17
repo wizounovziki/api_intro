@@ -28,6 +28,13 @@ IntelliK currently accepts the classifcation outputs and all the classes should 
 ```
 Note: Only one of the classes must be true.
 
+The keyword "error" is used to provide error information.
+```
+{
+    "error": "101-face not found"
+}
+```
+
 ### Emotion AI model
 #### Route: /emotion
 #### Description
