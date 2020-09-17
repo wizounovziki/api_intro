@@ -1,10 +1,35 @@
-# ASPN API Introduction
+# IntelliK AI API Documentation
+Welcome to the new IntelliK AI API documentation page. Our team is here to support you in the integration of your own AI in IntelliK.
 
-## Route: /emotion
-### Description
+This documentation provides the guidelines for integration with external AI API in IntelliK. The external AI should be hosted in public domain and should be accessible via RESTFUL API. Currently, the IntelliK is supporting HTTP API call and will be migrated to HTTPS soon.
+
+Watch this space as we continue to improve our API integration services!
+
+## Image Analytic
+This feature allow you to access the images acquired in IntelliK app and return actionable items to IntelliK app to take actions. Please refer to IntelliK user guide for detail configuration on IntelliK editor. The following provides the guidelines on inputs and outputs of your AI model to interface with IntelliK.
+
+- Inputs for AI model
+|  Variables  |Required(Y/N) | Description  |
+|  ----       | ----|        ----  |
+| image_type {file/base64} | Y| Specify the image format send from client. |
+| image  |Y |image file(jpg/png) in bytes or base64 string |
+
+- Outputs from AI model
+IntelliK currently accepts the classifcation outputs and all the classes should be listed as follow:
+{
+    "ClassA": false,
+    "ClassB": false,
+    "ClassC": false,
+    "ClassD": true
+}
+Note: Only one of the classes must be true.
+
+### Emotion AI model
+#### Route: /emotion
+#### Description
 Input an image with in bytes or base64 format, return the inference of the emotion on the face, now supports 6 emotions:
 anger, disgust, fear, happy, neutral, sad, surprise.
-### Parameters
+#### Parameters
 
 |  Variables  |Required(Y/N) | Description  |
 |  ----       | ----|        ----  |
@@ -24,43 +49,14 @@ form data = {
     image = file
 }
 ```
-//C# sample codes
-var client = new RestClient("http://intellik.southeastasia.cloudapp.azure.com:443/emotion");
+//C# codes for testing your AI model
+var client = new RestClient("http://yourAImodel/emotion");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
-request.AddHeader("Cookie", "XSRF-TOKEN=6d02c51c-4d37-4f43-84fe-18188a690907");
 request.AddParameter("image_type", "file");
 request.AddFile("image", "Your/file/path");
 IRestResponse response = client.Execute(request);
 Console.WriteLine(response.Content);
-
-```
-```
-//node.js(axios) sample codes
-var axios = require('axios');
-var FormData = require('form-data');
-var fs = require('fs');
-var data = new FormData();
-data.append('image_type', 'file');
-data.append('image', fs.createReadStream('Your/file/path'));
-
-var config = {
-  method: 'post',
-  url: 'http://intellik.southeastasia.cloudapp.azure.com:443/emotion',
-  headers: { 
-    'Cookie': 'XSRF-TOKEN=6d02c51c-4d37-4f43-84fe-18188a690907', 
-    ...data.getHeaders()
-  },
-  data : data
-};
-
-axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
-})
-.catch(function (error) {
-  console.log(error);
-});
 
 ```
 
@@ -70,11 +66,10 @@ form data = {
     image = your_base64_string
 }
 ```
-// C# sample codes
-var client = new RestClient("http://intellik.southeastasia.cloudapp.azure.com:443/emotion");
+//C# codes for testing your AI model
+var client = new RestClient("http://yourAImodel/emotion");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
-request.AddHeader("Cookie", "XSRF-TOKEN=6d02c51c-4d37-4f43-84fe-18188a690907");
 request.AlwaysMultipartFormData = true;
 request.AddParameter("image_type", "base64");
 request.AddParameter("image", "YourBase64String");
@@ -82,33 +77,8 @@ IRestResponse response = client.Execute(request);
 Console.WriteLine(response.Content);
 
 ```
-```
-// node.js(axios) sample codes
-var axios = require('axios');
-var FormData = require('form-data');
-var data = new FormData();
-data.append('image_type', 'base64');
-data.append('image', 'yourBase64String');
-var config = {
-  method: 'post',
-  url: 'http://intellik.southeastasia.cloudapp.azure.com:443/emotion',
-  headers: { 
-    'Cookie': 'XSRF-TOKEN=6d02c51c-4d37-4f43-84fe-18188a690907', 
-    ...data.getHeaders()
-  },
-  data : data
-};
 
-axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
-})
-.catch(function (error) {
-  console.log(error);
-});
-
-```
-### Sample Response
+#### Sample Response
 ```
 Status code:200(face detected)
 {
