@@ -9,12 +9,14 @@ Watch this space as we continue to improve our API integration services!
 This feature allow you to access the images acquired in IntelliK app and return actionable items to IntelliK app to take actions. Please refer to IntelliK user guide for detail configuration on IntelliK editor. The following provides the guidelines on inputs and outputs of your AI model to interface with IntelliK.
 
 - Inputs for AI model
+
 |  Variables  |Required(Y/N) | Description  |
 |  ----       | ----|        ----  |
 | image_type {file/base64} | Y| Specify the image format send from client. |
 | image  |Y |image file(jpg/png) in bytes or base64 string |
 
 - Outputs from AI model
+
 IntelliK currently accepts the classifcation outputs and all the classes should be listed as follow:
 {
     "ClassA": false,
