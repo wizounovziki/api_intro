@@ -18,12 +18,14 @@ This feature allow you to access the images acquired in IntelliK app and return 
 - Outputs from AI model
 
 IntelliK currently accepts the classifcation outputs and all the classes should be listed as follow:
+```
 {
     "ClassA": false,
     "ClassB": false,
     "ClassC": false,
     "ClassD": true
 }
+```
 Note: Only one of the classes must be true.
 
 ### Emotion AI model
