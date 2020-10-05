@@ -38,8 +38,8 @@ The keyword "error" is used to provide error information.
 ### Emotion AI model
 #### Route: /emotion
 #### Description
-Input an image with in bytes or base64 format, return the inference of the emotion on the face, now supports 6 emotions:
-anger, disgust, fear, happy, neutral, sad, surprise.
+Input an image with in bytes or base64 format, return the inference of the emotion on the face, now supports 4 emotions:
+happy, neutral, sad, surprise.
 #### Parameters
 
 |  Variables  |Required(Y/N) | Description  |
@@ -93,9 +93,6 @@ Console.WriteLine(response.Content);
 ```
 Status code:200(face detected)
 {
-    "anger": false,
-    "disgust": false,
-    "fear": false,
     "happy": false,
     "neutral": true,
     "sad": false,
